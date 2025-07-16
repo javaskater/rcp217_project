@@ -1,0 +1,1 @@
+# [Question posée en privé au professeur ce 16/07/2025 à 15:40](https://par.moodle.lecnam.net/mod/forumng/discuss.php?d=25320)

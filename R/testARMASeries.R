@@ -48,3 +48,15 @@ tryCatch(
 if (stationary_time_serie) {
   print(sprintf("[main] Everything was OK I already plotted"))
 }
+# calling arima.sim 2 times with only the p d q orders and letting arima.sim finding coefficients that make the model stationary
+## generating the orders randomly etween 1 and 10
+x <- sample.int(10, 2, replace=TRUE) # p <- x[1], q <- x[2]
+p <- x[1]
+q <- x[2]
+ts.sim10 <- arima.sim(n=200, model = list(order = c(p,0,q)), rand.gen = function(n, ...) sqrt(0.1796) * rt(n, df = 5)) # does not work
+ts.plot(ts.sim10)
+x <- sample.int(10, 2, replace=TRUE) # p <- x[1], q <- x[2]
+p <- x[1]
+q <- x[2]
+ts.sim11 <- arima.sim(n=200, model = list(order = c(p,0,q)), rand.gen = function(n, ...) sqrt(0.1796) * rt(n, df = 5)) # does not work
+ts.plot(ts.sim11)

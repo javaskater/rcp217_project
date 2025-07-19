@@ -80,3 +80,33 @@ source("~/CONSULTANT/rcp217_project/R/testARMASeries.R")
 * créer une [fonction R](https://www.w3schools.com/r/r_functions.asp) qui génère une TimeSerie stationaire
   * elle prend en paramètre le nombre de points
   * d'après le site [rpubs](https://rpubs.com/StatMind2023/ar_mac_01) on peut générér des arima.sim uniquement avec les ordres c=(x[1],0, x[2])
+* Non on ne peut pas
+```R
+x <- sample.int(10, 2, replace=TRUE) # p <- x[1], q <- x[2]
+p <- x[1]
+q <- x[2]
+ts.sim10 <- arima.sim(n=200, model = list(order = c(p,0,q)), rand.gen = function(n, ...) sqrt(0.1796) * rt(n, df = 5))
+ts.plot(ts.sim10)
+```
+* me répond que 
+```bash
+Error in arima.sim(n = 200, model = list(order = c(p, 0, q)), rand.gen = function(n,  : 
+  inconsistent specification of 'ar' order
+```
+* Il faut donner les ar et ma coefficients !!!
+## Créer une fonction qu génère des coefficients en dehors du cercle
+* C'est le but de [test de Génération Méthode 1](../../R/testGenerateARMASeries_methode1.R) mais même si mes racines sont en dehors du cercle
+  * arima.sim me répond
+```bash
+Error in arima.sim(model = list(order = c(4, 0, 0), ar = ar_coeffs), n = 200) : 
+  'ar' part of model is not stationary
+2.
+stop("'ar' part of model is not stationary")
+1.
+arima.sim(model = list(order = c(4, 0, 0), ar = ar_coeffs), n = 200)
+```
+## Relancer le arima.sim autant de fois que nécessaire
+cf. [test général des ARMA Series](../../R/testARMASeries.R)
+* C'est l'objet de [test de Génération Méthode 2](../../R/testGenerateARMASeries_methode2.R)
+ * retourner un dict contenant le ar et ma coefficient ainsi que la time serie (todo)
+ * voir comment on obtient les points de la time serie (todo)

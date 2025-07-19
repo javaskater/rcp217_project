@@ -1,5 +1,5 @@
 # Reprendre l'installation de R et RStudio sur mon PC de travail
-## Installer r-base
+## Installer r-base 
 ```bash
 jmena01@m077-2281091:~$ sudo apt install r-base
 [sudo] Mot de passe de jmena01 : 
@@ -176,3 +176,90 @@ Traitement des actions différées (« triggers ») pour shared-mime-info (2.4
 * Il a installé les extensions R et R Syntax
 # une [formation officielle express à R](https://cran.r-project.org/doc/manuals/R-intro.html)
 * [Avancée jusqu'au paragrphe 2.4 (exclu)](../../R/debut_2.4.R)
+# Installation de R sur monPC Windows + WSL
+* WSL fait tourner une Ubuntu 22.04 (todo: passer à la Ubuntu 24.04 comme au travail)
+## Installation de R
+```bash
+jpmena@LAPTOP-E2MJK1UO:~$ sudo apt install r-base-core
+[sudo] password for jpmena:
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+The following package was automatically installed and is no longer required:
+  libopengl0
+Use 'sudo apt autoremove' to remove it.
+The following additional packages will be installed:
+  bzip2-doc gfortran gfortran-11 icu-devtools libblas-dev libbz2-dev libgfortran-11-dev libicu-dev libjpeg-dev
+  libjpeg-turbo8-dev libjpeg8-dev liblapack-dev liblzma-dev libncurses-dev libncurses5-dev libpcre16-3 libpcre2-32-0
+  libpcre2-dev libpcre2-posix3 libpcre3-dev libpcre32-3 libpcrecpp0v5 libpng-dev libpng-tools libreadline-dev
+  pkg-config r-base-dev r-cran-boot r-cran-class r-cran-cluster r-cran-codetools r-cran-foreign r-cran-kernsmooth
+  r-cran-lattice r-cran-mass r-cran-matrix r-cran-mgcv r-cran-nlme r-cran-nnet r-cran-rpart r-cran-spatial
+  r-cran-survival r-doc-html r-recommended
+Suggested packages:
+  gfortran-multilib gfortran-doc gfortran-11-multilib gfortran-11-doc libcoarrays-dev liblapack-doc icu-doc
+  liblzma-doc ncurses-doc readline-doc elpa-ess r-doc-info | r-doc-pdf r-mathlib r-base-html
+The following NEW packages will be installed:
+  bzip2-doc gfortran gfortran-11 icu-devtools libblas-dev libbz2-dev libgfortran-11-dev libicu-dev libjpeg-dev
+  libjpeg-turbo8-dev libjpeg8-dev liblapack-dev liblzma-dev libncurses-dev libncurses5-dev libpcre16-3 libpcre2-32-0
+  libpcre2-dev libpcre2-posix3 libpcre3-dev libpcre32-3 libpcrecpp0v5 libpng-dev libpng-tools libreadline-dev
+  pkg-config r-base-core r-base-dev r-cran-boot r-cran-class r-cran-cluster r-cran-codetools r-cran-foreign
+  r-cran-kernsmooth r-cran-lattice r-cran-mass r-cran-matrix r-cran-mgcv r-cran-nlme r-cran-nnet r-cran-rpart
+  r-cran-spatial r-cran-survival r-doc-html r-recommended
+0 upgraded, 45 newly installed, 0 to remove and 57 not upgraded.
+Need to get 80.2 MB of archives.
+After this operation, 195 MB of additional disk space will be used.
+Do you want to continue? [Y/n] Y
+########################################
+```
+* test:
+```R
+jpmena@LAPTOP-E2MJK1UO:~$ R
+
+R version 4.1.2 (2021-11-01) -- "Bird Hippie"
+Copyright (C) 2021 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> quit()
+Save workspace image? [y/n/c]: y
+```
+## Installer RStudio
+```bash
+jpmena@LAPTOP-E2MJK1UO:~$ rstudio
+Command 'rstudio' not found, but can be installed with:
+sudo snap install rstudio # Il propse ce mode d'installation
+jpmena@LAPTOP-E2MJK1UO:~$ sudo snap install rstudio
+error: This revision of snap "rstudio" was published using classic confinement and thus may perform
+       arbitrary system changes outside of the security sandbox that snaps are usually confined to,
+       which may put your system at risk.
+
+       If you understand and want to proceed repeat the command including --classic. # il propose l'option classic
+jpmena@LAPTOP-E2MJK1UO:~$ sudo snap install rstudio --classic
+rstudio 2025.05.1-513 from Ubuntu High-Performance Computing (ubuntuhpcbot) installed
+```
+* Je teste:
+  * malgré les erreurs en console ci dessous il me lance l'application Graphique sur mon Windows
+```bash
+jpmena@LAPTOP-E2MJK1UO:~$ rstudio
+/snap/rstudio/19/electron-launch: line 22: /snap/rstudio/19/usr/lib/x86_64-linux-gnu/libgtk-3-0/gtk-query-immodules-3.0: No such file or directory
+ERROR: /snap/rstudio/19/usr/lib/x86_64-linux-gnu/libgtk-3-0/gtk-query-immodules-3.0 exited abnormally with status 127
+[9776:0719/104648.421748:ERROR:gl_factory.cc(102)] Requested GL implementation (gl=none,angle=none) not found in allowed implementations: [(gl=egl-angle,angle=default)].
+
+[9776:0719/104648.429411:ERROR:viz_main_impl.cc(185)] Exiting GPU process due to errors during initialization
+
+[9908:0719/104651.430615:ERROR:gl_factory.cc(102)] Requested GL implementation (gl=none,angle=none) not found in allowed implementations: [(gl=egl-angle,angle=default)].
+[9908:0719/104651.434855:ERROR:viz_main_impl.cc(185)] Exiting GPU process due to errors during initialization
+[9946:0719/104651.604566:ERROR:gl_factory.cc(102)] Requested GL implementation (gl=none,angle=none) not found in allowed implementations: [(gl=egl-angle,angle=default)].
+[9946:0719/104651.626368:ERROR:viz_main_impl.cc(185)] Exiting GPU process due to errors during initialization
+```

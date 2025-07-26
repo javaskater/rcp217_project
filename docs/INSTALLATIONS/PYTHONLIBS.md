@@ -104,3 +104,7 @@ Successfully installed anyio-4.9.0 argon2-cffi-25.1.0 argon2-cffi-bindings-21.2.
   * Dans la Command Palette entrer **python Select Interpreter** (il autocomplète attention les majuscules sont importantes)
   * sélectionner le virtual env
 * Tester avec un import d'une librairie type pytorch (todo)
+# Installation des librairies Python sous WSL (todo)
+* (todo)
+# installation des librairies Python Sous Windows
+* cf [Python sous Windows](./PYTHONWINDOWS.md)

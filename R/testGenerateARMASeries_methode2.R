@@ -41,3 +41,5 @@ calculate_times_serie <- function(p, q){
 my_ts <- calculate_times_serie(4,5)
 arma1 = my_ts[[3]]
 ts.plot(arma1)
+write.table(arma1, file="C:/Images/test.csv", sep=";")
+  

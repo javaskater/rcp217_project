@@ -263,3 +263,123 @@ ERROR: /snap/rstudio/19/usr/lib/x86_64-linux-gnu/libgtk-3-0/gtk-query-immodules-
 [9946:0719/104651.604566:ERROR:gl_factory.cc(102)] Requested GL implementation (gl=none,angle=none) not found in allowed implementations: [(gl=egl-angle,angle=default)].
 [9946:0719/104651.626368:ERROR:viz_main_impl.cc(185)] Exiting GPU process due to errors during initialization
 ```
+* L'application se gèle
+## Supprimer R Studio par snap
+```bash
+jpmena@LAPTOP-E2MJK1UO:~$ snap list
+Name                      Version          Rev    Tracking         Publisher     Notes
+bare                      1.0              5      latest/stable    canonical✓    base
+core20                    20250526         2599   latest/stable    canonical✓    base
+core22                    20250612         2045   latest/stable    canonical✓    base
+core24                    20250618         1055   latest/stable    canonical✓    base
+gtk-common-themes         0.1-81-g442e511  1535   latest/stable/…  canonical✓    -
+rstudio                   2025.05.1-513    19     latest/stable    ubuntuhpcbot  classic # on veut le supprimer
+snapd                     2.70             24792  latest/stable    canonical✓    snapd
+ubuntu-desktop-installer  0+git.0057491b   1286   latest/edge      canonical✓    classic
+jpmena@LAPTOP-E2MJK1UO:~$ sudo snap remove rstudio
+[sudo] password for jpmena:
+rstudio removed # va très vite
+```
+## Mettre à jour WSL et réinstaller rStudio en suivant la méthode officielle
+* Mettre à jour WSL vers la Ubuntu 24.04 fait [l'objet d'une autre page](../WSL/Ubuntu.md)
+## R sous WSL / Ubuntu 24.04
+* R toujours présent
+```bash
+jpmena@LAPTOP-E2MJK1UO:~$ R
+
+R version 4.3.3 (2024-02-29) -- "Angel Food Cake"
+Copyright (C) 2024 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+[Previously saved workspace restored]
+
+>
+```
+### RSudio sous WSL/Ubuntu 24.04
+* JE télécharge la [version pour Ubuntu24.04](https://posit.co/download/rstudio-desktop/)
+* je l'installe via gdebi
+```bash
+jpmena@LAPTOP-E2MJK1UO:~$ sudo apt install gdebi
+```
+* avantage par rapport à dpkg, gdebi gère les dépendances, pas besoin de fixer les dépendances ratées
+```bash
+jpmena@LAPTOP-E2MJK1UO:~$ sudo gdebi rstudio-2025.05.1-513-amd64.deb
+/usr/bin/gdebi:113: SyntaxWarning: invalid escape sequence '\S'
+  c = findall("[[(](\S+)/\S+[])]", msg)[0].lower()
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+Reading state information... Done
+Requires the installation of the following packages: lib32gcc-s1 lib32stdc++6 libc6-i386 libclang-18-dev libclang-common-18-dev libclang-dev libclang-rt-18-dev libclang1-18 libllvm18 libobjc-13-dev libobjc4 libssl-dev
+
+RStudio
+ RStudio is an integrated development environment (IDE) designed to support multiple languages, including both R and Python. It includes a console, syntax-highlighting editor that supports direct code execution, and a variety of robust tools for plotting, viewing history, debugging and managing your workspace.
+Do you want to install the software package? [y/N]:y
+###############################"""""
+Setting up libobjc4:amd64 (14.2.0-4ubuntu2~24.04) ... # il gère les dépendances
+Setting up libssl-dev:amd64 (3.0.13-0ubuntu3.5) ...
+Setting up libclang-common-18-dev:amd64 (1:18.1.3-1ubuntu1) ...
+Setting up libc6-i386 (2.39-0ubuntu8.5) ...
+Setting up libobjc-13-dev:amd64 (13.3.0-6ubuntu2~24.04) ...
+Setting up libllvm18:amd64 (1:18.1.3-1ubuntu1) ...
+Setting up libclang1-18 (1:18.1.3-1ubuntu1) ...
+Setting up libclang-18-dev (1:18.1.3-1ubuntu1) ...
+Setting up lib32gcc-s1 (14.2.0-4ubuntu2~24.04) ...
+Setting up lib32stdc++6 (14.2.0-4ubuntu2~24.04) ...
+Setting up libclang-rt-18-dev:amd64 (1:18.1.3-1ubuntu1) ...
+Setting up libclang-dev (1:18.0-59~exp2) ...
+Processing triggers for libc-bin (2.39-0ubuntu8.5) ...
+Selecting previously unselected package rstudio.
+(Reading database ... 125480 files and directories currently installed.)
+Preparing to unpack rstudio-2025.05.1-513-amd64.deb ...
+Unpacking rstudio (2025.05.1+513) ... # la même version que le SNAP sous la 22-04
+Setting up rstudio (2025.05.1+513) ...
+Processing triggers for desktop-file-utils (0.27-2build1) ...
+Processing triggers for mailcap (3.70+nmu1ubuntu1) ...
+Processing triggers for hicolor-icon-theme (0.17-2) ...
+Processing triggers for shared-mime-info (2.4-4) ...
+```
+* RStudio dans WSL Ubuntu est toujours bloqué (faire attention aux messages d'erreur ?)
+  * beaucouup ont eu [cette erreur](https://github.com/rstudio/rstudio/issues/13959)
+```bash
+jpmena@LAPTOP-E2MJK1UO:~$ rstudio
+[14799:0726/170137.824309:ERROR:gl_factory.cc(102)] Requested GL implementation (gl=none,angle=none) not found in allowed implementations: [(gl=egl-angle,angle=default)].
+[14799:0726/170137.826712:ERROR:viz_main_impl.cc(185)] Exiting GPU process due to errors during initialization
+[14908:0726/170138.472169:ERROR:gl_factory.cc(102)] Requested GL implementation (gl=none,angle=none) not found in allowed implementations: [(gl=egl-angle,angle=default)].
+[14908:0726/170138.474181:ERROR:viz_main_impl.cc(185)] Exiting GPU process due to errors during initialization
+[14930:0726/170138.526332:ERROR:gl_factory.cc(102)] Requested GL implementation (gl=none,angle=none) not found in allowed implementations: [(gl=egl-angle,angle=default)].
+[14930:0726/170138.528757:ERROR:viz_main_impl.cc(185)] Exiting GPU process due to errors during initialization
+[14907:0726/170138.582305:ERROR:command_buffer_proxy_impl.cc(131)] ContextResult::kTransientFailure: Failed to send GpuControl.CreateCommandBuffer.
+```
+# Installation de RStudio sous Windows
+* Sur le [site officiel de Posit](https://posit.co/download/rstudio-desktop/) partie Windows j'ai 2 boutons
+  * un pour installer R
+  * l'autre pour installer RStudio  
+## Install [R](https://cran.rstudio.com/)
+* le premier bouton nous [renvoie sur le site officiel](https://cran.rstudio.com/)
+  * J'installe base seulement (cf Linux) C:\Program Files\R\R-4.5.1
+## Install RSudio (second bouton ci dessus)
+* C:\Program Files\RStudio 
+* Fonctionne sans problème sous Windows
+  * Depuis Windows je peux ouvrir sans problème les fichiers qui sont sous WSL/Ubuntu 
+  * il voit bien la librairie ARIMA (qui est dans le base) il exécute bien le fichier *testGenerateARMASeries_methode2.R*
+* juste changer
+```R
+my_ts <- calculate_times_serie(4,5)
+arma1 = my_ts[[3]]
+ts.plot(arma1)
+write.table(arma1, file="C:/Images/test.csv", sep=";") # pad de \ mais / 
+```
+* Je retrouve bien le fichier sous Windows mai ce n'est pas le bon format de tableau (une seule colonne et toutes les valeurs)

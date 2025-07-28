@@ -162,3 +162,24 @@ Frequency = 1
 [1] 200
 ```
 ## car mettre ces données dans un fichier CSV qui sera nommé avec p et q et un indice (todo)
+* Il faut d'abord tranposer le tableau généré cf. réponse 25 de ce [Post de post de StackOverflow](https://stackoverflow.com/questions/33643181/how-do-i-flip-rows-and-columns-in-r)
+* ce qui donne
+```R
+my_ts <- calculate_times_serie(4,5)
+arma1 = my_ts[[3]]
+ts.plot(arma1)
+# write.table(t(arma1), file="C:/Images/test.csv", sep=";") # on windows
+write.table(t(arma1), file = "~/test.csv", fileEncoding = "UTF-8", sep=";") #t(arma1) for transposing the DataFrame arma1 
+```
+# Générer des fichiers dans un répertoire
+## nom du répertoire
+* [gérer les dates en R](https://demandred.gitbooks.io/introduction-a-r-pour-les-chatons/content/les-structures-de-donnees-avancees/les-dates-en-r.html)
+  * ou plutôt [formatter dates](https://campus.datacamp.com/courses/intermediate-r/chapter-5-utilities?ex=14)
+```R
+> ftoday <- format(Sys.Date(), format = "%d%m%Y")
+# idem avec TimeStamp
+> now <- Sys.time()
+> fNow <- format(now, format="%d%m%Y_%H%M%S")
+> fNow
+[1] "28072025_181246"
+```

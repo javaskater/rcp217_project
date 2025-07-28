@@ -38,9 +38,20 @@ calculate_times_serie <- function(p, q){
   return (list(ar_coefficients <- ar_coeffs, ma_coefficients <- ma_coeffs, arma_timeserie <- time_serie))
 }
 
-my_ts <- calculate_times_serie(4,5)
-arma1 = my_ts[[3]]
-ts.plot(arma1)
-# write.table(t(arma1), file="C:/Images/test.csv", sep=";") # on windows
-write.table(t(arma1), file = "~/test.csv", fileEncoding = "UTF-8", sep=";") #t(arma1) for transposing the DataFrame arma1 
+generate_time_serie_in_csv <- function(p,q){
+  timestamp_generation_serie <- format(Sys.time(), format="%d%m%Y%H%M%S")
+  ts_file_name <- sprintf("ar_%d__ma_%d__time_%s.csv",p,q,timestamp_generation_serie)
+  my_ts <- calculate_times_serie(p,q)
+  arma1 = my_ts[[3]]
+  #ts.plot(arma1)
+  # write.table(t(arma1), file="C:/Images/test.csv", sep=";") # on windows
+  write.table(t(arma1), file = ts_file_name, fileEncoding = "UTF-8", sep=";")
+}
+
+mainDir <- "~/CONSULTANT"
+#mainDir="C:/Images"
+subDir <- sprintf("ts_generees_%s",format(Sys.Date(), format = "%d%m%Y"))
+dir.create(file.path(mainDir, subDir), showWarnings = FALSE)
+setwd(file.path(mainDir, subDir))
+generate_time_serie_in_csv(p=4,q=5)
   

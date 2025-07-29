@@ -183,3 +183,18 @@ write.table(t(arma1), file = "~/test.csv", fileEncoding = "UTF-8", sep=";") #t(a
 > fNow
 [1] "28072025_181246"
 ```
+# Version finale de la génération de TimSeries
+* [Code GenerateARMASeries_final](../../R/GenerateARMASeries_final.R)
+* lancement
+```bash
+jmena01@m077-2281091:~/CONSULTANT/rcp217_project/R$ R < GenerateARMASeries_final.R --no-save | tee generate.log # 2.15 Go de Logs
+##############################################"
+[1] "[calculate_times_serie] checking ar_coeffs: 0.174985487246886|0.0349990525282919|0.0294001635629684|0.161872464930639|0.0974003456067294|0.0215118462219834|0.131100190104917|0.0895454161800444|0.188764945603907 with ma_coeffs: 0.263273895252496|0.0667002082336694|0.00676208455115557|0.588091465877369|0.607867867453024|0.0636415877379477|0.506280383327976|0.0222483368124813|0.538920584367588"
+[1] "[calculate_times_serie] Everything was fine. the serie is stationary"
+[1] "[calculate_times_serie] + finally Executed"
+```
+* a mis au moins 10 minutes
+  * Je récupère les 100 générés et zippés [dans le répertoire de R](../../R/ts_generees_29072025.zip)
+  * peut être lancer une seconde génération pour la validation ?
+    * pour 100 Time series j'ai 2.15 Go de Log
+  * en faire plusieurs (pour augmenter la taille du training)

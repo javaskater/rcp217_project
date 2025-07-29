@@ -1,4 +1,4 @@
-calculate_times_serie <- function(p, q){
+calculate_times_serie <- function(p, q, ts_length = 200){
   stationary_time_serie <- FALSE
   time_serie <- c()
   ar_coeffs <- c()
@@ -38,14 +38,14 @@ calculate_times_serie <- function(p, q){
   return (list(ar_coefficients <- ar_coeffs, ma_coefficients <- ma_coeffs, arma_timeserie <- time_serie))
 }
 
-generate_time_serie_in_csv <- function(p,q){
+generate_time_serie_in_csv <- function(p,q,  ts_length = 200){
   timestamp_generation_serie <- format(Sys.time(), format="%d%m%Y%H%M%S")
   ts_file_name <- sprintf("ar_%d__ma_%d__time_%s.csv",p,q,timestamp_generation_serie)
-  my_ts <- calculate_times_serie(p,q)
+  my_ts <- calculate_times_serie(p,q, ts_length)
   arma1 = my_ts[[3]]
   #ts.plot(arma1)
   # write.table(t(arma1), file="C:/Images/test.csv", sep=";") # on windows
-  write.table(t(arma1), file = ts_file_name, fileEncoding = "UTF-8", sep=";")
+  write.table(t(arma1), file = ts_file_name, fileEncoding = "UTF-8", sep=";") # t(arma1): t stands for transpose
 }
 
 mainDir <- "~/CONSULTANT"
@@ -53,5 +53,14 @@ mainDir <- "~/CONSULTANT"
 subDir <- sprintf("ts_generees_%s",format(Sys.Date(), format = "%d%m%Y"))
 dir.create(file.path(mainDir, subDir), showWarnings = FALSE)
 setwd(file.path(mainDir, subDir))
-generate_time_serie_in_csv(p=4,q=5)
+print(sprintf("[main] on va générer des times series en maase dans le répertoire %s/%s", mainDir, subDir))
+time_serie_length <- 1000
+numeric_range <- 0:9
+for (p in numeric_range){
+  for (q in numeric_range){
+    print(sprintf("[main] on génère une time serie de %d données avec les coefficients AR: %d et MA: %d", time_serie_length, p, q))
+    generate_time_serie_in_csv(p,q, time_serie_length)
+  }
+}
+
   

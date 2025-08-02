@@ -67,3 +67,19 @@ output = pool(img.unsqueeze(0)) # each layer receives a tensor with the order of
 * optimizer.step() updates the model using the gradients we just computed
 # 270 
 * exactly what I need to do on my work. How the different elements work together
+# 271
+* Code exactly what we need :
+* Only question in outputs, what is the first dimension ?
+  * predicted is an Tensor (length = batch's size)
+```python
+for imgs, labels in loader:
+outputs = model(imgs)
+_, predicted = torch.max(outputs, dim=1) # What is the 0 ouput ?
+correct += int((predicted == labels).sum()) # predicted is a tensor just like labels the == returs a Tensor of 1  = True and 0 == False
+```
+# 273
+* very important to save the weights of a model (and to reload them when needed)
+# 275
+* we move the Tensors (imgs and labels) and the model to the device (torch.device)
+# 276
+* we go to more complex problems of no use for my project ...

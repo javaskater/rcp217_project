@@ -171,3 +171,9 @@ PS C:\WINDOWS\system32> Set-ExecutionPolicy Restricted                          
 ```
 * on ne peut plus lancer le passage en environnement virtualisé python dans la console normale (Base de Registre modifiée)
   * exit pour quitter une console powershell
+## ([support de l'environnement virtualisé ?](https://code.visualstudio.com/docs/python/environments))
+* comme indiqué dans le [lien](https://code.visualstudio.com/docs/python/environments)
+* CTRL + SHIFT + P (Ouvrir la Command Palette)
+  * Dans la Command Palette entrer **python Select Interpreter** (il autocomplète attention les majuscules sont importantes)
+  * sélectionner le virtual env
+* Tester avec un import d'une librairie type pytorch (todo)

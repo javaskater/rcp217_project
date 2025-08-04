@@ -83,3 +83,18 @@ correct += int((predicted == labels).sum()) # predicted is a tensor just like la
 * we move the Tensors (imgs and labels) and the model to the device (torch.device)
 # 276
 * we go to more complex problems of no use for my project ...
+# 7.1.2 The Dataset class
+# 216 implementing a proper DataSet
+* From images and labels
+# 232
+```python
+# view(-1) transforms the 32x32x3 to a linear vector of size 3072
+img_tensor = img.view(-1).unsqueeze(0) 
+```
+# 236
+* another full FCC network (training part)
+* labels are the label indices ...
+# 237
+* ful FCC network, validation part
+# 239
+* intersting calculation to get the number of elements

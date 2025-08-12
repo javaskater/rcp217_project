@@ -9,7 +9,7 @@
   * nn.Conv3d vor videos
 # 250
 * Plus il y a de output channels
-  * the more of the ouput channels the more of the fetures detected
+  * the more of the ouput channels the more of the features detected
 # 251
 * output=16 means 16 3x3 coefficients for each of the input channel: total tensor 16 x 3 x (3x3)
 * we only have 16 biases (one for each output channel, no input channel's bias)

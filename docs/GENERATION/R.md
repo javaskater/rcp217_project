@@ -198,3 +198,5 @@ jmena01@m077-2281091:~/CONSULTANT/rcp217_project/R$ R < GenerateARMASeries_final
   * peut être lancer une seconde génération pour la validation ?
     * pour 100 Time series j'ai 2.15 Go de Log
   * en faire plusieurs (pour augmenter la taille du training)
+# TODO on veut des time series de 1000 Datapoints 
+* et non de 100 Datapoints

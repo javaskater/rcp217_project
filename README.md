@@ -16,7 +16,7 @@
   * la méthode brutale de [générer des coefficients aléatoires tant que la série ne se crée pas](./R/testGenerateARMASeries_methode2.R)
     * méthode que j'ai adoptée pour la [génération finale](./R/GenerateARMASeries_final.R) mais qui prend plus de 10 minute pour générer 100 séries 
 # Partie Python: chargement et réseau
-* toute la documentation et les scripts associés se trouvent dans [](./docs/PYTHON_STEPS/5-GLOBAL.md)
+* toute la documentation et les scripts associés se trouvent dans [La documentation Chapeau des différentes étapes](./docs/PYTHON_STEPS/5-GLOBAL.md)
   * liens à suivre qui ramènent vers les scripts et les autres pages
   * Question à poser au professeur sur l'entrainement et la validation (to ask)
     * à priori un problème sur la sortie du Dataloader 

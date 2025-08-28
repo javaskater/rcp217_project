@@ -11,7 +11,7 @@ calculate_times_serie <- function(p, q, ts_length = 200){
         msg_str = sprintf("[calculate_times_serie] checking ar_coeffs: %s with ma_coeffs: %s", paste0(ar_coeffs, collapse = "|"), paste0(ma_coeffs, collapse = "|"))
         print(msg_str)
         #time_serie <<- arima.sim(model = list(order = c(p,0,q), ar = ar_coeffs, ma = ma_coeffs), n = 200)
-        time_serie <- arima.sim(model = list(ar = ar_coeffs, ma = ma_coeffs), n = 200)
+        time_serie <- arima.sim(model = list(ar = ar_coeffs, ma = ma_coeffs), n = ts_length)
         # if we pass the previous expression we have a stationary time serie
         stationary_time_serie <<- TRUE
         msg_str = sprintf("[calculate_times_serie] Everything was fine. the serie is stationary")

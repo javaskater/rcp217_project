@@ -198,5 +198,26 @@ jmena01@m077-2281091:~/CONSULTANT/rcp217_project/R$ R < GenerateARMASeries_final
   * peut être lancer une seconde génération pour la validation ?
     * pour 100 Time series j'ai 2.15 Go de Log
   * en faire plusieurs (pour augmenter la taille du training)
-# TODO on veut des time series de 1000 Datapoints 
+# On veut des time series de 1000 Datapoints (28/08/2025)
 * et non de 100 Datapoints
+* j'ai corrigé dans [le script R de génération finale](../../R/GenerateARMASeries_final.R)
+  * mis à arima.sim une longeur n à ts_length et non 200
+  * pas le temps de générer plus de 100 time series
+  * Dans le programme final de génération en R on avait déjà *time_serie_length* à 1000
+    * mais non pris en compte car arima.sim prenait un n=200 en dur
+  * le main génère 100 time series seulement
+```R
+mainDir <- "~/CONSULTANT"
+#mainDir="C:/Images"
+subDir <- sprintf("ts_generees_%s",format(Sys.Date(), format = "%d%m%Y"))
+dir.create(file.path(mainDir, subDir), showWarnings = FALSE)
+setwd(file.path(mainDir, subDir))
+print(sprintf("[main] on va générer des times series en maase dans le répertoire %s/%s", mainDir, subDir))
+time_serie_length <- 1000 # déjà la bonne valeur
+numeric_range <- 0:9
+for (p in numeric_range){
+  for (q in numeric_range){
+    print(sprintf("[main] on génère une time serie de %d données avec les coefficients AR: %d et MA: %d", time_serie_length, p, q))
+    generate_time_serie_in_csv(p,q, time_serie_length) # mais non prise en compte car dans le fonction de génération on avait n=200 en dur !!!
+  }
+```

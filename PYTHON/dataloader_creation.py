@@ -1,4 +1,5 @@
 from torch.utils.data import Dataset, DataLoader
+from torch import FloatTensor
 import os
 import re
 import csv
@@ -21,7 +22,7 @@ class TimeSeriesDatasetForPCoefficients(Dataset):
                             csvFile = csv.reader(file, delimiter =';')
                             next(csvFile) # skip the header
                             for ligne_time_serie_str in csvFile:
-                                ligne_time_serie = list(map(float, ligne_time_serie_str))
+                                ligne_time_serie = FloatTensor(list(map(float, ligne_time_serie_str)))
                                 print(ligne_time_serie)
                                 self.X.append(ligne_time_serie)
                         self.y.append(p)
@@ -35,7 +36,7 @@ class TimeSeriesDatasetForPCoefficients(Dataset):
         return self.X[index], self.y[index]
     
 if __name__ == '__main__':
-    data_train = TimeSeriesDatasetForPCoefficients(['/home/jpmena/CONSULTANT/CNAM/rcp217_project/R/ts_generees_29072025'])
+    data_train = TimeSeriesDatasetForPCoefficients(['/home/jpmena/CONSULTANT/CNAM/rcp217_project/R/ts_generees_28082025'])
     print(f"[main] la taille de notre data train est {len(data_train)}")
     data_train_loader = DataLoader(data_train, batch_size=50, shuffle=True)
     print(len(data_train_loader))

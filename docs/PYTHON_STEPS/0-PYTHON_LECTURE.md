@@ -98,3 +98,7 @@ img_tensor = img.view(-1).unsqueeze(0)
 * ful FCC network, validation part
 # 239
 * intersting calculation to get the number of elements
+# Calculating the Error
+## 269 of the latest book edition (MEAP: evolving)
+* source code blocks 30 and 31 of [Chapter 8 Jupyter Notebook](https://github.com/deep-learning-with-pytorch/dlwpt-code/blob/master/p1ch8/1_convolution.ipynb)
+* bloc code 5 for creating the data for labelling (0, or 1)  [Chapter 8 Jupyter Notebook](https://github.com/deep-learning-with-pytorch/dlwpt-code/blob/master/p1ch8/1_convolution.ipynb)

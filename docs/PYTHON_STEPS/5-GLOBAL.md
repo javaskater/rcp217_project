@@ -8,7 +8,7 @@
 [Project16/forward] after first convolution and relu shape of x torch.Size([1, 300, 100])
 torch.Size([1, 300, 100])
 ```
-# TODO Resnet steps
+# Resnet steps
 * Pour la construction de chaque RESNET Step cf. [doc associée](./2-RESNET.md)
 ## 4 Resnet Step de kernel 10
 
@@ -18,6 +18,9 @@ torch.Size([1, 300, 100])
 * à la fin on a 300 feature maps de taille 64 - 6*0 = 64
 ## Résultat après les RESNET Blocs
 ```bash
+# passage en environnement virtualisé PyTorch
+jpmena@LAPTOP-E2MJK1UO:~/CONSULTANT/CNAM/rcp217_project$ source env_python_for_projet_rcp217/bin/activate
+# lancement de la partie main dans le code du module
 (env_python_for_projet_rcp217) jpmena@LAPTOP-E2MJK1UO:~/CONSULTANT/CNAM/rcp217_project/PYTHON$ python projetct16_module.py 
 [main] Calling Project16 with kernel 10
 [Project16/forward] after first convolution and relu shape of x torch.Size([1, 300, 100])
@@ -74,7 +77,13 @@ torch.Size([1, 300, 64])
 ### Test
 * Rappel: prérequis passage en environnement virtualisé Python pour Pytorch et Jupyter (librairies de Serge Rosmorduc)
 ```bash
+# passage en environnement virtualisé
 jpmena@LAPTOP-E2MJK1UO:~/CONSULTANT/CNAM/rcp217_project$ source env_python_for_projet_rcp217/bin/activate
+# lancement de la partie main du fichier module
+(env_python_for_projet_rcp217) jpmena@LAPTOP-E2MJK1UO:~/CONSULTANT/CNAM/rcp217_project/PYTHON$ python training_module.py
+# quitter l'environnement virtualisé
+(env_python_for_projet_rcp217) jpmena@LAPTOP-E2MJK1UO:~/CONSULTANT/CNAM/rcp217_project/PYTHON$ deactivate 
+jpmena@LAPTOP-E2MJK1UO:~/CONSULTANT/CNAM/rcp217_project/PYTHON$
 ```
 * Gros problème
 ```bash
@@ -155,5 +164,8 @@ ValueError: too many dimensions 'str'
 # validation (todo)
 * code repris du bloc [38 et 39 du code du livre MAnning](https://github.com/deep-learning-with-pytorch/dlwpt-code/blob/master/p1ch8/1_convolution.ipynb)
 * Je récupère les coefficients sauvegardés lors du training
-## Suivre l'exemple du livre (todo)
+## Suivre l'exemple du livre
 * cf. [le bloc 38 de ce cahier Jupyter](https://github.com/deep-learning-with-pytorch/dlwpt-code/blob/master/p1ch8/1_convolution.ipynb)
+# En attente de la solution à mon problème PyTorch
+* cf. [la réponse 4 de ce Post Stackoverflow](https://stackoverflow.com/questions/63825841/attributeerror-tuple-has-no-attribute-to)
+* [Question en cours posée le 28/08/2025](../Questions/3-PYTORCH_TENSORS.md)

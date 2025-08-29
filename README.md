@@ -7,6 +7,9 @@
 * [sur mon PC Windows 11 sous Windows Subsystem For Linux (WSL) / Ubuntu passée de 22 à 24](./docs/INSTALLATIONS/PYTHONLIBSWSL.md)
   * [pour le passage de Ubuntu 22 à Ubuntu 24 sous WSL](./docs/WSL/Ubuntu.md) 
 * [Sur mon PC Windows 11 en restant purement sous Windows](./docs/INSTALLATIONS/PYTHONWINDOWS.md)
+### Editeur [Visual Studio Code](https://code.visualstudio.com/) Pour Python
+* Excellent support pour les environnements virtualisés sous Python (via extension Python)
+* très bon [support pour l'édition de JuPyter Notebooks](https://code.visualstudio.com/docs/datascience/jupyter-notebooks)
 ## R
 * [sur mon PC Windows sous WSL et purement sous Windows](./docs/INSTALLATIONS/R.md)
 # Partie génération des time series sous R
@@ -21,3 +24,5 @@
   * Question à poser au professeur sur l'entrainement et la validation (to ask)
     * à priori un problème sur la sortie du Dataloader 
 * Noter [le lien vers la lecture préliminaire de mon livre Manning sur PyTorch](./docs/PYTHON_STEPS/0-PYTHON_LECTURE.md)
+## Création d'une feuille de NoteBook Jupyter pour lancement sous GoogleColab
+* Plus d'information sur la [documentation liée aux Tests sous COLAB](./docs/PYTHON_STEPS/6-TEST_COLAB.md)

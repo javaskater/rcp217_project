@@ -145,6 +145,25 @@ Successfully installed anyio-4.9.0 argon2-cffi-25.1.0 argon2-cffi-bindings-25.1.
         http://127.0.0.1:8888/tree?token=4ffa15497d4177a100b32a62d8383b796cf2ce50fa406a07
 [I 2025-08-02 17:01:10.354 ServerApp] Skipped non-installed server(s): bash-language-server, dockerfile-language-server-nodejs, javascript-typescript-langserver, jedi-language-server, julia-language-server, pyright, python-language-server, python-lsp-server, r-languageserver, sql-language-server, texlab, typescript-language-server, unified-language-server, vscode-css-languageserver-bin, vscode-html-languageserver-bin, vscode-json-languageserver-bin, yaml-language-server
 ```
+## Suite à installations sous Powershell
+* on a un nouveau répertoire sur le FileSystem Windows et qui contient tout notre environnement virtuel Python
+```powershell
+PS C:\Users\jeanp> cd .\CONSULTANT\env_python_for_projet_rcp217\
+PS C:\Users\jeanp\CONSULTANT\env_python_for_projet_rcp217> dir
+
+
+    Répertoire : C:\Users\jeanp\CONSULTANT\env_python_for_projet_rcp217 #notre répertoire qui contient l'environnement virtue
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----        02/08/2025     16:58                etc
+d-----        26/07/2025     17:45                Include
+d-----        26/07/2025     17:45                Lib
+d-----        02/08/2025     16:58                Scripts
+d-----        02/08/2025     16:58                share
+-a----        26/07/2025     17:45            213 pyvenv.cfg
+```
 * me propose le navigateur à démarrer vers l'URL *http://localhost:8888/tree*
 * par défaut prend pour arborescence le répertoire dans lequel j'ai démarré le Jupyter
 ```python

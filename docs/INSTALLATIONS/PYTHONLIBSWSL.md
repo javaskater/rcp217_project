@@ -109,7 +109,11 @@ Successfully installed anyio-4.9.0 argon2-cffi-25.1.0 argon2-cffi-bindings-21.2.
   * Dans la Command Palette entrer **python Select Interpreter** (il autocomplète attention les majuscules sont importantes)
   * sélectionner le virtual env
 * Tester avec un import d'une librairie type pytorch (todo)
-# Installation des librairies Python sous WSL (todo)
-* (todo)
+# [Installation des extensions pour VSCode](https://code.visualstudio.com/docs/languages/python)
+## installation de l'extension Python pour VSCode
+* il s'agit de la [Microsoft Python Extension](https://marketplace.visualstudio.com/items?itemName=ms-python.python)
+  * tiré de cette [page très intéressante du développement Python sous VSCode](https://code.visualstudio.com/docs/languages/python) 
+## Installation de l'extension  WSL pour VSCode
+* tout est expliqué sur cette page de la [documentation officielle relative à l'intégration de WSL sous VSCode](https://code.visualstudio.com/docs/remote/wsl)
 # installation des librairies Python Sous Windows
 * cf [Python sous Windows](./PYTHONWINDOWS.md)

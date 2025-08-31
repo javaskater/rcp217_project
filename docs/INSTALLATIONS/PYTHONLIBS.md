@@ -55,7 +55,7 @@ jmena01@m077-2281091:~/CONSULTANT/rcp217_project$ source env_python_for_projet_r
 # sortir de l'environnement virtualisé
 (env_python_for_projet_rcp217) jmena01@m077-2281091:~/CONSULTANT/rcp217_project$ deactivate
 ```
-## est ce que ce le Jupyter Notebooks sont inclus ?
+## est ce que ce les Jupyter Notebooks sont inclus ?
 * Non il faut passer une commande supplémentaire [pip install notebook](https://www.codecademy.com/article/how-to-use-jupyter-notebooks)
 ```bash
 ## Oublié de Serge Rosmorduc
@@ -104,7 +104,8 @@ Successfully installed anyio-4.9.0 argon2-cffi-25.1.0 argon2-cffi-bindings-21.2.
   * Dans la Command Palette entrer **python Select Interpreter** (il autocomplète attention les majuscules sont importantes)
   * sélectionner le virtual env
 * Tester avec un import d'une librairie type pytorch (todo)
-# [Installation des librairies Python sous WSL](./PYTHONLIBSWSL.md) 
-* OK cf lien dans le titre
+# [Installation des extensions pour VSCode](https://code.visualstudio.com/docs/languages/python)
+## installation de l'extension Python pour VSCode
+* il s'agit de la [Microsoft Python Extension](https://marketplace.visualstudio.com/items?itemName=ms-python.python)
 # installation des librairies Python Sous Windows dans environnement virtuel
 * cf [Python sous Windows](./PYTHONWINDOWS.md) OK cf. lien juste avant

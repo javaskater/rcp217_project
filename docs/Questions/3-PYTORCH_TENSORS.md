@@ -16,3 +16,7 @@ en sortie du Softmax on a 10 probabilitées
 
 La CrossErrorEntropy prend ces 10 sorties de Softmax en entrée d’un côté et la valeur du label de l’autre (un entier entre 0 et 9). Ne devrait t’on pas transformer cette valeur de label en encodage one-hot ?
 (*D'après [la réponse 4 de ce Post Stackoverflow](https://stackoverflow.com/questions/63825841/attributeerror-tuple-has-no-attribute-to) on nous propose de faire un one-hot vector ?*)
+## Réponse de MArin le 03/09/2025
+C'est une question de code, je ne peux pas déboguer le code pour vous, mais vous pouvez chercher un projet de classification MNIST sur le Web (10 classes) et regarder leur façon de gérer le DataLoader avec la cross entropy loss. J'ai trouvé ça sur réponse possible sur stackoverflow :
+
+https://stackoverflow.com/questions/62456558/is-one-hot-encoding-required-for-using-pytorchs-cross-entropy-loss-function

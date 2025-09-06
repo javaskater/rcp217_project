@@ -55,7 +55,7 @@ def test_ResNet1D_kernel10():
     del model
 
 def test_ResNet1D_kernel1():
-    x = torch.randn(1,300,100) # simuler 300 input channels (second dimention) of size 100 (third dimension) (First dimension 1 for batch?)
+    x = torch.randn(10,300,100) # simuler 300 input channels (second dimention) of size 100 (third dimension) (First dimension 1 for batch?)
     model = ResNet1D(in_channels=300,out_channels=300,kernel_size=1,stride=1,debug=True)
     print(model(x).shape)
     del model

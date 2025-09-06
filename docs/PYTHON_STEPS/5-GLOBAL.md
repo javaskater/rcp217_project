@@ -169,3 +169,5 @@ ValueError: too many dimensions 'str'
 # En attente de la solution à mon problème PyTorch
 * cf. [la réponse 4 de ce Post Stackoverflow](https://stackoverflow.com/questions/63825841/attributeerror-tuple-has-no-attribute-to)
 * [Question en cours posée le 28/08/2025](../Questions/3-PYTORCH_TENSORS.md)
+* [Marin m'a répondu](../Questions/3-PYTORCH_TENSORS.md) en me renvoyant vers [ce lien StackOVerflow](https://stackoverflow.com/questions/62456558/is-one-hot-encoding-required-for-using-pytorchs-cross-entropy-loss-function)
+  * La réponse 27 est excellente

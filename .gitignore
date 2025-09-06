@@ -1,3 +1,4 @@
 /env_python_for_projet_rcp217
 /.ipynb*
 /docs/GENERATION/.ipynb*
+PYTHON/__pycache__/*.pyc

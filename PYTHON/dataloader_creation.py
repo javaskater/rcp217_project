@@ -1,5 +1,5 @@
 from torch.utils.data import Dataset, DataLoader
-from torch import FloatTensor
+from torch import FloatTensor, IntTensor
 import os
 import re
 import csv
@@ -14,8 +14,11 @@ class TimeSeriesDatasetForPCoefficients(Dataset):
                 if fichier_time_serie_name.endswith(".csv"):
                     coeff_pq_search = re.search('ar_([0-9]{1})__ma_([0-9]{1})', fichier_time_serie_name, re.IGNORECASE)
                     if coeff_pq_search:
-                        p = coeff_pq_search.group(1)
-                        q = coeff_pq_search.group(2)
+                        p_str = coeff_pq_search.group(1)
+                        p = int(p_str)
+                        q_str = coeff_pq_search.group(2)
+                        q = int(q_str)
+
                         chemin_complet_fichier_time_serie = os.path.join(path_to_the_timeseries_files, fichier_time_serie_name)
                         print(f"[TimeSeriesDatasetForPCoefficients: init] fichier trouvé {chemin_complet_fichier_time_serie} avec pattern pour p oefficient: {p} et pour q coefficient: {q}")
                         with open(chemin_complet_fichier_time_serie, mode ='r')as file:
@@ -25,7 +28,9 @@ class TimeSeriesDatasetForPCoefficients(Dataset):
                                 ligne_time_serie = FloatTensor(list(map(float, ligne_time_serie_str)))
                                 print(ligne_time_serie)
                                 self.X.append(ligne_time_serie)
-                        self.y.append(p)
+                        p_tensor = IntTensor([p]) # Ce doit être un teseur avec une seule donnée: l'ordre attenduexit()
+
+                        self.y.append(p_tensor)
 
     def __len__(self):
         assert len(self.X) == len(self.y)

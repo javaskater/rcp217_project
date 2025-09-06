@@ -14,19 +14,24 @@ def training_loop(n_epochs, optimizer, model, loss_fn, train_loader, device):
         loss_train = 0.0
         for series, labels in train_loader:  # <3>
             series = series.to(device)
-            labels = torch.IntTensor(labels).to(device=device)
-            
-            outputs = model(series)  # <4>
-            
-            loss = loss_fn(outputs, labels)  # <5>
+            labels = labels.to(device=device)
 
-            optimizer.zero_grad()  # <6>
-            
-            loss.backward()  # <7>
-            
-            optimizer.step()  # <8>
+            # we simulate the batch we work with batches of size 1
+            for i, serie in enumerate(series):
+                label = labels[i]
+                
+                serie2D = serie.unsqueeze(0).unsqueeze(0) # add the one channel dimension and before one for the batch_size
+                outputs = model(serie2D)  # <4>
+                
+                loss = loss_fn(outputs, label)  # <5>
 
-            loss_train += loss.item()  # <9>
+                optimizer.zero_grad()  # <6>
+                
+                loss.backward()  # <7>
+                
+                optimizer.step()  # <8>
+
+                loss_train += loss.item()  # <9>
 
         if epoch == 1 or epoch % 5 == 0:
             print('{} Epoch {}, Training loss {}'.format(

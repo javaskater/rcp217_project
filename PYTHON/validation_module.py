@@ -20,10 +20,11 @@ def validate(model, train_loader, val_loader):
         total = 0
 
         with torch.no_grad():
-            for imgs, labels in loader:
-                imgs = imgs.to(device=device)
+            for series, labels in loader:
+                series = series.to(device=device)
                 labels = torch.tensor(labels).to(device=device)
-                outputs = model(imgs)
+                series2D = series.unsqueeze(1) # add the one channel dimension betwwen the batch_size dimension and the serie's length
+                outputs = model(series2D) 
                 _, predicted = torch.max(outputs, dim=1) # <1>
                 total += labels.shape[0]
                 correct += int((predicted == labels).sum())

@@ -9,12 +9,44 @@ import torch.optim as optim
 import torch
 
 # From the Manning book's source code https://github.com/deep-learning-with-pytorch/dlwpt-code/blob/master/p1ch8/1_convolution.ipynb
-def training_loop(n_epochs, optimizer, model, loss_fn, train_loader, device):
+def training_loop(n_epochs, optimizer, model, loss_fn, train_loader, device, debug=False):
     for epoch in range(1, n_epochs + 1):  # <2>
         loss_train = 0.0
         for series, labels in train_loader:  # <3>
             series = series.to(device)
             labels = labels.to(device=device)
+
+            if debug == True:
+                print(f"[training_loop] series batch before unsqueeze {series.shape}")                
+            series2D = series.unsqueeze(1) # add the one channel dimension betwwen the batch_size dimension and the serie's length
+            if debug == True:
+                print(f"[training_loop] series batch after unsqueeze {series2D.shape}")   
+            
+            outputs = model(series2D)  # <4>
+            
+            loss = loss_fn(outputs, labels)  # <5>
+
+            optimizer.zero_grad()  # <6>
+            
+            loss.backward()  # <7>
+            
+            optimizer.step()  # <8>
+
+            loss_train += loss.item()  # <9>
+
+        if epoch == 1 or epoch % 5 == 0:
+            print('{} Epoch {}, Training loss {}'.format(
+                datetime.datetime.now(), epoch,
+                loss_train / len(train_loader)))  # <10>
+
+def training_loop_with_batch_loop(n_epochs, optimizer, model, loss_fn, train_loader, device):
+    for epoch in range(1, n_epochs + 1):  # <2>
+        loss_train = 0.0
+        for series, labels in train_loader:  # <3>
+            series = series.to(device)
+            labels = labels.to(device=device)
+
+
 
             # we simulate the batch we work with batches of size 1
             for i, serie in enumerate(series):

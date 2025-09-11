@@ -28,7 +28,7 @@ class TimeSeriesDatasetForPCoefficients(Dataset):
                                 ligne_time_serie = FloatTensor(list(map(float, ligne_time_serie_str)))
                                 print(ligne_time_serie)
                                 self.X.append(ligne_time_serie)
-                        p_tensor = IntTensor([p]) # Ce doit être un teseur avec une seule donnée: l'ordre attenduexit()
+                        p_tensor = IntTensor([p]) # Ce doit être un tenseur avec une seule donnée: l'ordre attenduexit()
 
                         self.y.append(p_tensor)
 

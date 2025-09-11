@@ -39,12 +39,12 @@ class ResNet1D(nn.Module):
 
         # identity with trucation
         in_x_truncated = in_x[...,:x.shape[2]]
-        x += in_x_truncated
+        x_out = x + in_x_truncated
 
         # final relu
-        x = self.relu(x)
+        x_out_after_relu = self.relu(x_out)
         
-        return x
+        return x_out_after_relu
 
 
 

@@ -13,18 +13,22 @@ def training_loop(n_epochs, optimizer, model, loss_fn, train_loader, device, deb
     for epoch in range(1, n_epochs + 1):  # <2>
         loss_train = 0.0
         for series, labels in train_loader:  # <3>
-            series = series.to(device)
-            labels = labels.to(device=device)
-
             if debug == True:
                 print(f"[training_loop] series batch before unsqueeze {series.shape}")                
-            series2D = series.unsqueeze(1) # add the one channel dimension betwwen the batch_size dimension and the serie's length
+            series = series.unsqueeze(1) # add the one channel dimension betwwen the batch_size dimension and the serie's length
             if debug == True:
-                print(f"[training_loop] series batch after unsqueeze {series2D.shape}")   
+                print(f"[training_loop] series batch after unsqueeze {series.shape}") 
+            series = series.to(device)
+            labels = labels.squeeze(1).long() # cf erreur 3 et 4 dans le compte rendu
+            labels = labels.to(device=device)
+              
             
-            outputs = model(series2D)  # <4>
+            outputs = model(series)  # <4>
             
-            loss = loss_fn(outputs, labels)  # <5>
+            if debug == True:
+                print(f"[training_loop] outputs shape {outputs.shape} labels shape {labels.shape}")
+
+            loss = loss_fn(outputs,labels)  # <5>
 
             optimizer.zero_grad()  # <6>
             
@@ -85,7 +89,8 @@ if __name__ == '__main__':
         model = model,
         loss_fn = loss_fn,
         train_loader = train_loader,
-        device = device
+        device = device,
+        debug=False
     )
     # we save the model coefficients to be reused later (in the validation_module.py)
     data_path = '../R/' # at the same level as my time series

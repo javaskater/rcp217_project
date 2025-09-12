@@ -22,7 +22,7 @@ def validate(model, train_loader, val_loader):
         with torch.no_grad():
             for series, labels in loader:
                 series = series.to(device=device)
-                labels = torch.tensor(labels).to(device=device)
+                labels = torch.tensor(labels).squeeze(1).long().to(device=device) # cf erreur 3 et 4 dans le compte rendu
                 series2D = series.unsqueeze(1) # add the one channel dimension between the batch_size dimension and the serie's length
                 outputs = model(series2D) 
                 _, predicted = torch.max(outputs, dim=1) # <1>

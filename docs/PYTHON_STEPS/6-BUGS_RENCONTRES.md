@@ -1,4 +1,4 @@
-# Tests en environnement virtualisé :
+# Tests en environnement virtualisé partie training:
 ## Première erreur
 * Mon label doit être un un tenseur avec une seule valeur (l'ordre de p)
   * et non un one-hot-encoding de l'ordre de p (coefficient ar) cf. [réponse de Marin du 28/08/2025](../Questions/3-PYTORCH_TENSORS.md)
@@ -148,8 +148,56 @@ cf. [Réponse de ce forum Pytorch](https://discuss.pytorch.org/t/encounter-the-r
         
         return x_out_after_relu
 ```
-# Ca tourne enfin
-A la fin de la log on a 
+## Ca tourne enfin
+* lancement
 ```bash
-2025-09-11 17:52:17.136395 Epoch 50, Training loss 2.2640886306762695
+jpmena@LAPTOP-E2MJK1UO:~/CONSULTANT/CNAM/rcp217_project$ source env_python_for_projet_rcp217/bin/activate # on passe dans l'environnement virtualisé PyTorch
+(env_python_for_projet_rcp217) jpmena@LAPTOP-E2MJK1UO:~/CONSULTANT/CNAM/rcp217_project$ cd PYTHON/
+(env_python_for_projet_rcp217) jpmena@LAPTOP-E2MJK1UO:~/CONSULTANT/CNAM/rcp217_project/PYTHON$ python training_module.py 
+```
+* Dans la log on a 
+```bash
+Training on device cpu.
+2025-09-13 14:37:17.538155 Epoch 1, Training loss 2.3026925325393677
+2025-09-13 14:37:22.983517 Epoch 5, Training loss 2.2925405502319336
+2025-09-13 14:37:30.649062 Epoch 10, Training loss 2.2856345176696777
+2025-09-13 14:37:37.624956 Epoch 15, Training loss 2.276905655860901
+2025-09-13 14:37:44.568807 Epoch 20, Training loss 2.2781039476394653
+2025-09-13 14:37:51.815883 Epoch 25, Training loss 2.273137092590332
+2025-09-13 14:37:58.535008 Epoch 30, Training loss 2.2641263008117676
+2025-09-13 14:38:05.355048 Epoch 35, Training loss 2.2680059671401978
+2025-09-13 14:38:12.040122 Epoch 40, Training loss 2.2669788599014282
+2025-09-13 14:38:18.883312 Epoch 45, Training loss 2.2708911895751953
+2025-09-13 14:38:25.638264 Epoch 50, Training loss 2.2621127367019653
+```
+# Tests en environnement virtualisé partie validation:
+* on a repris les corrections de la partie entraînement précédent
+* premier lancement (en environnement virtualisé PyTorch cf. ci dessus)
+```bash
+(env_python_for_projet_rcp217) jpmena@LAPTOP-E2MJK1UO:~/CONSULTANT/CNAM/rcp217_project/PYTHON$ python validation_module.py 
+```
+* Dans la log on a :
+```bash
+Validating on device cpu.
+/home/jpmena/CONSULTANT/CNAM/rcp217_project/PYTHON/validation_module.py:25: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  labels = torch.tensor(labels).squeeze(1).long().to(device=device) # cf erreur 3 et 4 dans le compte rendu
+Accuracy train: 0.31
+Accuracy val: 0.19
+```
+## Se débarasser du Warning ?
+* on remplace 
+```python
+labels = torch.tensor(labels).squeeze(1).long().to(device=device) # cf erreur 3 et 4 dans le compte rendu
+```
+* par  (car labels est déjà un PyTorch Tensor)
+```python
+labels = labels.squeeze(1).long().to(device=device) # cf erreur 3 et 4 dans le compte rendu
+```
+## Cela fonctionne sans warning
+* dans la log on a :
+```bash
+tensor([ 1.0000,  0.8663,  1.5100,  ..., -3.7304, -0.9471,  1.2509])
+Validating on device cpu.
+Accuracy train: 0.26
+Accuracy val: 0.18
 ```

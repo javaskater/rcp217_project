@@ -22,7 +22,7 @@ def validate(model, train_loader, val_loader):
         with torch.no_grad():
             for series, labels in loader:
                 series = series.to(device=device)
-                labels = torch.tensor(labels).squeeze(1).long().to(device=device) # cf erreur 3 et 4 dans le compte rendu
+                labels = labels.squeeze(1).long().to(device=device) # cf erreur 3 et 4 dans le compte rendu
                 series2D = series.unsqueeze(1) # add the one channel dimension between the batch_size dimension and the serie's length
                 outputs = model(series2D) 
                 _, predicted = torch.max(outputs, dim=1) # <1>
@@ -39,7 +39,7 @@ if __name__ == '__main__':
     data_val = TimeSeriesDatasetForPCoefficients(['/home/jpmena/CONSULTANT/CNAM/rcp217_project/R/ts_generees_29082025'])
     val_loader = DataLoader(data_val, batch_size=50, shuffle=True)
     device = (torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu'))
-    print(f"Training on device {device}.")
+    print(f"Validating on device {device}.")
     
     loaded_model = Project16().to(device=device)
     data_path = '../R/' # at the same level as my time series
